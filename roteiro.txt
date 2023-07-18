@@ -1,0 +1,36 @@
+docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+
+Once your instance is up and running, Log in to http://localhost:9000 using System Administrator credentials:
+
+login: admin
+password: admin
+-------------------------
+Criando projeto javascript
+npm init
+
+npm install jest @types/jest sonar-scanner --only-dev
+----------------------------
+sonar-scanner:
+
+Na documentação:
+docker run \
+    --rm \
+    -e SONAR_HOST_URL="http://${SONARQUBE_URL}" \
+    -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=${YOUR_PROJECT_KEY}" \
+    -e SONAR_TOKEN="myAuthenticationToken" \
+    -v "${YOUR_REPO}:/usr/src" \
+    sonarsource/sonar-scanner-cli
+
+docker network create sonar-teste
+docker network connect sonar-teste sonarqube
+
+docker run --network=sonar-teste --rm -e SONAR_HOST_URL="http://sonarqube:9000" -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=node-test -Dsonar.sources=. -Dproject.settings=sonar-project.properties" -e SONAR_TOKEN="sqp_471075e416512b4e55bb3924d94ac2eb9e5d5e61" -v "C:\Users\valdirtorres\devcode\fullcycle30\integracao-continua\sonarqube-fullcycle-js\js\src:/usr/src" sonarsource/sonar-scanner-cli
+
+demora 
+
+
+sonar-scanner.bat -D"sonar.projectKey=node-test" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.token=sqp_471075e416512b4e55bb3924d94ac2eb9e5d5e61"
+
+C:\Users\valdirtorres\devcode\fullcycle30\integracao-continua\sonar-scanner-4.8.0.2856-windows\bin\sonar-scanner.bat -D"sonar.projectKey=node-test" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.token=sqp_471075e416512b4e55bb3924d94ac2eb9e5d5e61"
+
+C:\Users\valdirtorres\devcode\fullcycle30\integracao-continua\sonar-scanner-4.8.0.2856-windows\bin\sonar-scanner.bat
